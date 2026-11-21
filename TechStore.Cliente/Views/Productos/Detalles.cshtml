@@ -1,0 +1,22 @@
+@model TechStore.Cliente.ServicioProductos.Producto
+@{
+    ViewData["Title"] = "Detalle del producto";
+}
+
+<h2>@Model.Nombre</h2>
+<p class="text-muted">Datos obtenidos con la operación SOAP <code>ObtenerProducto(@Model.IdProducto)</code>.</p>
+
+<div class="panel-neon mb-3" style="max-width: 680px">
+<dl class="row mb-0">
+    <dt class="col-sm-4">Id</dt><dd class="col-sm-8">@Model.IdProducto</dd>
+    <dt class="col-sm-4">Código</dt><dd class="col-sm-8">@Model.Codigo</dd>
+    <dt class="col-sm-4">Descripción</dt><dd class="col-sm-8">@Model.Descripcion</dd>
+    <dt class="col-sm-4">Categoría</dt><dd class="col-sm-8">@Model.Categoria</dd>
+    <dt class="col-sm-4">Precio</dt><dd class="col-sm-8 precio">@Model.Precio.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</dd>
+    <dt class="col-sm-4">Stock</dt><dd class="col-sm-8">@Model.Stock</dd>
+    <dt class="col-sm-4">Sucursal</dt><dd class="col-sm-8"><span class="badge-sucursal">@Model.Sucursal</span></dd>
+</dl>
+</div>
+
+<a asp-action="Editar" asp-route-id="@Model.IdProducto" class="btn btn-warning">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

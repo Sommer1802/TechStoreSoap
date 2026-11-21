@@ -1,0 +1,87 @@
+@model TechStore.Cliente.ServicioProductos.Producto[]
+@{
+    ViewData["Title"] = "Productos";
+    var co = new System.Globalization.CultureInfo("es-CO");
+    var valorInventario = Model.Sum(p => p.Precio * p.Stock);
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <h2 class="mb-0">Productos</h2>
+    <a asp-action="Crear" class="btn btn-primary">+ Nuevo producto</a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-sm-4">
+        <div class="stat-neon stat-cian">
+            <div class="etiqueta">Productos</div>
+            <div class="valor">@Model.Length</div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="stat-neon stat-magenta">
+            <div class="etiqueta">Unidades en stock</div>
+            <div class="valor">@Model.Sum(p => p.Stock)</div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="stat-neon stat-verde">
+            <div class="etiqueta">Valor del inventario</div>
+            <div class="valor">@valorInventario.ToString("C0", co)</div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-neon">
+    <form method="get" class="row g-2 mb-3">
+        <div class="col-sm-5">
+            <input name="texto" value="@ViewBag.Texto" class="form-control" placeholder="Buscar por nombre, código o categoría" />
+        </div>
+        <div class="col-sm-4">
+            <select name="sucursal" class="form-select">
+                <option value="">Todas las sucursales</option>
+                @foreach (var s in TechStore.Cliente.Models.ProductoViewModel.Sucursales)
+                {
+                    <option value="@s" selected="@(s == (string?)ViewBag.Sucursal)">@s</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-3 d-flex gap-2 align-items-center">
+            <button class="btn btn-outline-info">Buscar</button>
+            <a asp-action="Index" class="btn btn-link">Limpiar</a>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Id</th><th>Código</th><th>Nombre</th><th>Categoría</th>
+                <th class="text-end">Precio</th><th class="text-end">Stock</th><th>Sucursal</th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Length == 0)
+            {
+                <tr><td colspan="8" class="text-center text-muted py-4">No hay productos.</td></tr>
+            }
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td class="text-muted">@p.IdProducto</td>
+                    <td><code>@p.Codigo</code></td>
+                    <td>@p.Nombre</td>
+                    <td>@p.Categoria</td>
+                    <td class="text-end precio">@p.Precio.ToString("C0", co)</td>
+                    <td class="text-end @(p.Stock < 10 ? "stock-bajo" : "")" title="@(p.Stock < 10 ? "Stock bajo" : "")">@p.Stock</td>
+                    <td><span class="badge-sucursal">@p.Sucursal</span></td>
+                    <td class="text-nowrap text-end">
+                        <a asp-action="Detalles" asp-route-id="@p.IdProducto" class="btn btn-sm btn-outline-info">Ver</a>
+                        <a asp-action="Editar" asp-route-id="@p.IdProducto" class="btn btn-sm btn-outline-warning">Editar</a>
+                        <a asp-action="Eliminar" asp-route-id="@p.IdProducto" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>

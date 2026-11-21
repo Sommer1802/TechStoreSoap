@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Servicio + Cliente",
+    "Projects": [
+      {
+        "Path": "TechStore.Servicio\\TechStore.Servicio.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "TechStore.Cliente\\TechStore.Cliente.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

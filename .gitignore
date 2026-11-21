@@ -1,0 +1,39 @@
+# Carpetas de compilación
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Visual Studio Code / Rider
+.vscode/
+.idea/
+
+# Resultados de pruebas y logs
+TestResults/
+*.log
+
+# Paquetes NuGet
+*.nupkg
+packages/
+
+# Bases de datos locales
+*.mdf
+*.ldf
+
+# Sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Documentación del taller (no se sube)
+Documentacion/

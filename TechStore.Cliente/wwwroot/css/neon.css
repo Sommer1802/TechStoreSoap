@@ -1,0 +1,265 @@
+/* =========================================================
+   TechStore S.A.S — Tema "Neón"
+   Se carga DESPUÉS de bootstrap.min.css y sobrescribe sus estilos.
+   ========================================================= */
+
+:root {
+    --fondo: #07060f;
+    --panel: rgba(18, 16, 38, 0.72);
+    --borde: rgba(0, 240, 255, 0.25);
+    --texto: #e6e9ff;
+    --texto-suave: #8f93c4;
+
+    --cian: #00f0ff;
+    --magenta: #ff2bd6;
+    --verde: #39ff88;
+    --ambar: #ffd23f;
+    --rojo: #ff3864;
+
+    --brillo-cian: 0 0 6px rgba(0, 240, 255, .8), 0 0 18px rgba(0, 240, 255, .45);
+    --brillo-magenta: 0 0 6px rgba(255, 43, 214, .8), 0 0 18px rgba(255, 43, 214, .45);
+}
+
+/* ---------- Fondo y tipografía ---------- */
+html, body {
+    background-color: var(--fondo);
+}
+
+body {
+    color: var(--texto);
+    font-family: "Rajdhani", "Segoe UI", sans-serif;
+    font-size: 1.05rem;
+    min-height: 100vh;
+    margin-bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 10%, rgba(255, 43, 214, .18), transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(0, 240, 255, .14), transparent 45%),
+        linear-gradient(rgba(0, 240, 255, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, .05) 1px, transparent 1px);
+    background-size: auto, auto, 40px 40px, 40px 40px;
+    background-attachment: fixed;
+}
+
+h1, h2, h3, .navbar-brand, th {
+    font-family: "Orbitron", "Segoe UI", sans-serif;
+    letter-spacing: .06em;
+}
+
+h2 {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 4px #fff, 0 0 12px var(--magenta), 0 0 28px var(--magenta);
+}
+
+a { color: var(--cian); }
+a:hover { color: #fff; text-shadow: var(--brillo-cian); }
+
+.text-muted { color: var(--texto-suave) !important; }
+
+code {
+    color: var(--verde);
+    background: rgba(57, 255, 136, .08);
+    padding: .1em .4em;
+    border-radius: 4px;
+}
+
+/* ---------- Barra de navegación ---------- */
+.navbar-neon {
+    background: rgba(7, 6, 15, .85) !important;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cian);
+    box-shadow: 0 0 12px rgba(0, 240, 255, .5), 0 0 40px rgba(0, 240, 255, .15);
+}
+
+.navbar-neon .navbar-brand {
+    color: var(--cian) !important;
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-shadow: var(--brillo-cian);
+    animation: parpadeo 6s infinite;
+}
+
+.navbar-neon .navbar-brand span { color: var(--magenta); text-shadow: var(--brillo-magenta); }
+.navbar-neon .navbar-text { color: var(--texto-suave) !important; }
+
+@keyframes parpadeo {
+    0%, 92%, 100% { opacity: 1; }
+    93% { opacity: .35; }
+    94% { opacity: 1; }
+    96% { opacity: .5; }
+    97% { opacity: 1; }
+}
+
+/* ---------- Paneles tipo "vidrio" ---------- */
+.panel-neon {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: 0 0 20px rgba(0, 240, 255, .08), inset 0 0 20px rgba(0, 240, 255, .04);
+}
+
+/* Tarjetas de resumen */
+.stat-neon {
+    background: var(--panel);
+    border: 1px solid currentColor;
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 0 10px currentColor, inset 0 0 12px rgba(255, 255, 255, .03);
+    height: 100%;
+}
+.stat-neon .valor {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-shadow: 0 0 8px currentColor;
+}
+.stat-neon .etiqueta {
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    font-size: .8rem;
+    letter-spacing: .12em;
+}
+.stat-cian { color: var(--cian); }
+.stat-magenta { color: var(--magenta); }
+.stat-verde { color: var(--verde); }
+
+/* ---------- Tabla ---------- */
+.table {
+    color: var(--texto);
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--texto);
+    --bs-table-striped-bg: rgba(0, 240, 255, .04);
+    --bs-table-striped-color: var(--texto);
+    --bs-table-hover-bg: rgba(255, 43, 214, .10);
+    --bs-table-hover-color: #fff;
+    --bs-table-accent-bg: transparent;
+    border-color: rgba(0, 240, 255, .15);
+    margin-bottom: 0;
+}
+
+.table > :not(:first-child) { border-top: none; }
+
+.table thead th {
+    color: var(--cian);
+    font-size: .75rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--cian) !important;
+    text-shadow: 0 0 6px rgba(0, 240, 255, .6);
+}
+
+.table tbody tr { transition: background .2s, box-shadow .2s; }
+.table tbody tr:hover { box-shadow: inset 3px 0 0 var(--magenta); }
+
+.table code, .precio { white-space: nowrap; }
+.precio { color: var(--verde); text-shadow: 0 0 6px rgba(57, 255, 136, .5); font-weight: 600; }
+.stock-bajo { color: var(--rojo); text-shadow: 0 0 6px rgba(255, 56, 100, .6); font-weight: 700; }
+
+.badge-sucursal {
+    display: inline-block;
+    padding: .15em .6em;
+    border: 1px solid var(--magenta);
+    border-radius: 999px;
+    color: #ffc6f3;
+    font-size: .85rem;
+    white-space: nowrap;
+    box-shadow: 0 0 6px rgba(255, 43, 214, .35);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+    font-family: "Orbitron", sans-serif;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border-radius: 8px;
+    background: transparent;
+    transition: all .2s ease;
+}
+.btn-sm { font-size: .62rem; padding: .3rem .55rem; }
+
+.btn-primary, .btn-outline-info   { --c: var(--cian); }
+.btn-outline-warning, .btn-warning { --c: var(--ambar); }
+.btn-outline-danger, .btn-danger  { --c: var(--rojo); }
+.btn-secondary, .btn-outline-secondary { --c: var(--texto-suave); }
+
+.btn-primary, .btn-outline-info, .btn-outline-warning, .btn-warning,
+.btn-outline-danger, .btn-danger, .btn-secondary, .btn-outline-secondary {
+    color: var(--c);
+    border: 1px solid var(--c);
+    background: transparent;
+    box-shadow: 0 0 6px color-mix(in srgb, var(--c) 45%, transparent);
+}
+
+.btn-primary:hover, .btn-outline-info:hover, .btn-outline-warning:hover, .btn-warning:hover,
+.btn-outline-danger:hover, .btn-danger:hover, .btn-secondary:hover, .btn-outline-secondary:hover,
+.btn-primary:focus, .btn-danger:focus {
+    color: var(--fondo);
+    background: var(--c);
+    border-color: var(--c);
+    box-shadow: 0 0 10px var(--c), 0 0 30px var(--c);
+}
+
+.btn-link { color: var(--texto-suave); font-family: inherit; text-transform: none; font-size: .95rem; }
+
+/* ---------- Formularios ---------- */
+.form-label, dt { color: var(--cian); text-transform: uppercase; font-size: .8rem; letter-spacing: .1em; }
+
+.form-control, .form-select {
+    background-color: rgba(7, 6, 15, .7);
+    color: var(--texto);
+    border: 1px solid rgba(0, 240, 255, .3);
+    border-radius: 8px;
+}
+.form-control::placeholder { color: #5d6190; }
+
+.form-control:focus, .form-select:focus {
+    background-color: rgba(7, 6, 15, .9);
+    color: #fff;
+    border-color: var(--magenta);
+    box-shadow: 0 0 0 .15rem rgba(255, 43, 214, .25), 0 0 16px rgba(255, 43, 214, .5);
+}
+
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2300f0ff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+.form-select option { background: #12102a; color: var(--texto); }
+
+/* Quitar fondo blanco del autocompletado de Chrome */
+input:-webkit-autofill {
+    -webkit-text-fill-color: var(--texto);
+    -webkit-box-shadow: 0 0 0 1000px #0d0b1e inset;
+}
+
+.text-danger { color: var(--rojo) !important; text-shadow: 0 0 6px rgba(255, 56, 100, .5); }
+.input-validation-error { border-color: var(--rojo) !important; box-shadow: 0 0 10px rgba(255, 56, 100, .5) !important; }
+
+/* ---------- Alertas ---------- */
+.alert {
+    background: var(--panel);
+    border-radius: 10px;
+    border: 1px solid;
+}
+.alert-success { color: var(--verde); border-color: var(--verde); box-shadow: 0 0 12px rgba(57, 255, 136, .4); }
+.alert-danger  { color: var(--rojo);  border-color: var(--rojo);  box-shadow: 0 0 12px rgba(255, 56, 100, .4); }
+.alert-warning { color: var(--ambar); border-color: var(--ambar); box-shadow: 0 0 12px rgba(255, 210, 63, .35); }
+
+/* ---------- Detalle ---------- */
+dd { color: #fff; }
+
+/* ---------- Pie de página ---------- */
+.footer-neon {
+    color: var(--texto-suave);
+    font-size: .85rem;
+    text-align: center;
+    padding: 2rem 0 1.5rem;
+}
+.footer-neon span { color: var(--magenta); text-shadow: var(--brillo-magenta); }
+
+/* Accesibilidad: sin animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    .navbar-neon .navbar-brand { animation: none; }
+    .btn, .table tbody tr { transition: none; }
+}

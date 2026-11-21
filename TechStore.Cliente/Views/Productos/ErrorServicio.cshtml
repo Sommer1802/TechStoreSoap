@@ -1,0 +1,8 @@
+@{
+    ViewData["Title"] = "Error de servicio";
+}
+
+<h2>No fue posible completar la operación</h2>
+<div class="alert alert-danger">@ViewBag.Error</div>
+<p>Inicie primero el proyecto <strong>TechStore.Servicio</strong> y vuelva a intentarlo.</p>
+<a asp-action="Index" class="btn btn-secondary">Reintentar</a>

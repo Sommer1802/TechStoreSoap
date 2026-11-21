@@ -1,0 +1,15 @@
+@model TechStore.Cliente.ServicioProductos.Producto
+@{
+    ViewData["Title"] = "Eliminar producto";
+}
+
+<h2>Eliminar producto</h2>
+<div class="alert alert-danger" style="max-width: 680px">
+    ¿Seguro que desea eliminar <strong>@Model.Nombre</strong> (código @Model.Codigo, sucursal @Model.Sucursal)?
+    Se invocará la operación SOAP <code>EliminarProducto(@Model.IdProducto)</code>.
+</div>
+
+<form asp-action="Eliminar" asp-route-id="@Model.IdProducto" method="post">
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

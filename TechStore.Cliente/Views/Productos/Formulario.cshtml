@@ -1,0 +1,67 @@
+@model TechStore.Cliente.Models.ProductoViewModel
+@{
+    bool esNuevo = Model.IdProducto == 0;
+    ViewData["Title"] = esNuevo ? "Registrar producto" : "Editar producto";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p class="text-muted">
+    Al guardar se invoca la operación SOAP <code>@(esNuevo ? "RegistrarProducto" : "ActualizarProducto")</code>.
+</p>
+
+<div class="panel-neon" style="max-width: 760px">
+<form asp-action="@(esNuevo ? "Crear" : "Editar")" asp-route-id="@(esNuevo ? null : Model.IdProducto)" method="post" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
+
+    <div class="col-sm-4">
+        <label asp-for="Codigo" class="form-label"></label>
+        <input asp-for="Codigo" class="form-control" />
+        <span asp-validation-for="Codigo" class="text-danger small"></span>
+    </div>
+    <div class="col-sm-8">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger small"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Descripcion" class="form-label"></label>
+        <textarea asp-for="Descripcion" class="form-control" rows="2"></textarea>
+    </div>
+    <div class="col-sm-6">
+        <label asp-for="Categoria" class="form-label"></label>
+        <input asp-for="Categoria" class="form-control" list="categorias" />
+        <datalist id="categorias">
+            <option value="Computadores" /><option value="Impresoras" /><option value="Almacenamiento" />
+            <option value="Monitores" /><option value="Seguridad" /><option value="Accesorios" />
+        </datalist>
+        <span asp-validation-for="Categoria" class="text-danger small"></span>
+    </div>
+    <div class="col-sm-6">
+        <label asp-for="Sucursal" class="form-label"></label>
+        <select asp-for="Sucursal" class="form-select"
+                asp-items="@(new SelectList(TechStore.Cliente.Models.ProductoViewModel.Sucursales))">
+            <option value="">-- Seleccione --</option>
+        </select>
+        <span asp-validation-for="Sucursal" class="text-danger small"></span>
+    </div>
+    <div class="col-sm-6">
+        <label asp-for="Precio" class="form-label"></label>
+        <input asp-for="Precio" class="form-control" type="number" step="any" min="1" />
+        <span asp-validation-for="Precio" class="text-danger small"></span>
+    </div>
+    <div class="col-sm-6">
+        <label asp-for="Stock" class="form-label"></label>
+        <input asp-for="Stock" class="form-control" type="number" min="0" />
+        <span asp-validation-for="Stock" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
